@@ -98,7 +98,7 @@ class _CustomNavigationBarState extends State<CustomNavigationBar>
             alignment: Alignment.bottomCenter,
             child: CustomPaint(
               painter: NavCustomPainter(_pos, _length, widget.color),
-              child: Container(height: 75.0),
+              child: Container(height: 70.0),
             ),
           ),
           Align(

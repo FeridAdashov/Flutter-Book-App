@@ -111,4 +111,19 @@ class DatabaseService {
       isFavourite: data['isFavourite'] ?? false,
     );
   }
+
+  Future addBook(Book book) async {
+    if (book.name == '') return;
+    return await refBOOKS.doc(book.name).set({
+      'name': book.name,
+      'description': book.description,
+      'imagePath': book.imagePath,
+      'price': book.price,
+      'isFavourite': book.isFavourite,
+    });
+  }
+
+  Future deleteBook(String name) async {
+    refBOOKS.doc(name).delete();
+  }
 }

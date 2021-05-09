@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 
-import '../../model/signin_request_model.dart';
 import '../../model/auth_response.dart';
+import '../../model/signin_request_model.dart';
 import '../../service/IAuthService.dart';
 import 'login_state.dart';
 
@@ -20,16 +20,18 @@ class LoginCubit extends Cubit<LoginState> {
       {required this.service})
       : super(LoginInitial());
 
-  Future<void> loginWithEmail() async {
-    if (formKey.currentState != null && formKey.currentState!.validate()) {
+  Future<void> loginWithEmail({String? email, String? password}) async {
+    String _email = email ?? emailController.text.trim();
+    String _password = password ?? passwordController.text.trim();
+
+    if (email != null ||
+        (formKey.currentState != null && formKey.currentState!.validate())) {
       changeLoadingView();
 
       var data;
       try {
-        data = await service.userLoginWithEmail(SignInRequestModel(
-          email: emailController.text.trim(),
-          password: passwordController.text.trim(),
-        ));
+        data = await service.userLoginWithEmail(
+            SignInRequestModel(email: _email, password: _password));
       } catch (e) {
         emit(LoginError('Login Error: ' + e.toString()));
         changeLoadingView();

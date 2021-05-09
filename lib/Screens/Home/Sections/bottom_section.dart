@@ -6,8 +6,8 @@ ClipRRect buildBottomSection(Color firstColor, Color secondColor,
     int _selectedBottomMenuIndex, Function tapNavBar) {
   return ClipRRect(
     borderRadius: BorderRadius.only(
-      topLeft: Radius.circular(40.0),
-      topRight: Radius.circular(40.0),
+      topLeft: Radius.circular(30.0),
+      topRight: Radius.circular(30.0),
     ),
     child: CustomNavigationBar(
       backgroundColor: firstColor,

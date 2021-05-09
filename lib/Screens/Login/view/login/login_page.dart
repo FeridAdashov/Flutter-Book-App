@@ -23,28 +23,30 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext baseContext) {
-    return BlocProvider(
-      create: (context) => LoginCubit(
-        formKey,
-        emailController,
-        passwordController,
-        service: AuthService(),
-      ),
-      child: BlocConsumer<LoginCubit, LoginState>(
-        listener: (context, state) {
-          if (state is LoginComplete) {
-            // replacePage(context, HomePage(model: state.model));
-            replacePage(context, BookHome());
-          } else if (state is LoginError) {
-            showFloatingFlushbar(baseContext, 'Login Error', state.message);
-            print("ERROR: ${state.message}");
-          }
-        },
-        builder: (context, state) {
-          return buildScaffold(context, state);
-        },
-      ),
-    );
+    return AuthService().isSigned()
+        ? BookHome()
+        : BlocProvider(
+            create: (context) => LoginCubit(
+              formKey,
+              emailController,
+              passwordController,
+              service: AuthService(),
+            ),
+            child: BlocConsumer<LoginCubit, LoginState>(
+              listener: (context, state) {
+                if (state is LoginComplete) {
+                  replacePage(context, BookHome());
+                } else if (state is LoginError) {
+                  showFloatingFlushbar(
+                      baseContext, 'Login Error', state.message);
+                  print("ERROR: ${state.message}");
+                }
+              },
+              builder: (context, state) {
+                return buildScaffold(context, state);
+              },
+            ),
+          );
   }
 
   Scaffold buildScaffold(BuildContext context, LoginState state) {

@@ -1,3 +1,4 @@
+import 'package:book_project/Constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -71,7 +72,7 @@ class ImageDetailPage extends StatelessWidget {
                           padding: EdgeInsets.all(5),
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(5),
-                              color: Color(0xFF65AE00)),
+                              color: AppColors.primaryColor),
                           child: Icon(
                             Icons.arrow_back,
                             color: Colors.white,
@@ -121,7 +122,7 @@ class ImageDetailPage extends StatelessWidget {
                   shape: new RoundedRectangleBorder(
                     borderRadius: new BorderRadius.circular(15.0),
                   ),
-                  primary: Color(0xFF65AE00),
+                  primary:AppColors.primaryColor,
                 ),
                 onPressed: () => {},
                 child: Row(

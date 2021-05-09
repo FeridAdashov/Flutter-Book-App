@@ -118,6 +118,9 @@ class _BookHomeState extends State<BookHome> {
         break;
       case 2:
         break;
+      case 3:
+        showAddBookDialog(context);
+        break;
     }
   }
 }
