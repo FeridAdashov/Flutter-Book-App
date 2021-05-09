@@ -1,5 +1,7 @@
-import 'package:book_project/Screens/Home/Helpers/custom_meal_card.dart';
+import 'package:book_project/Screens/Home/Helpers/book_card.dart';
+import 'package:book_project/Screens/Home/model/book.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class MainSection extends StatelessWidget {
   final Function visibleTopSection;
@@ -8,6 +10,8 @@ class MainSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    var data = Provider.of<List<Book>>(context);
 
     ScrollController _controller = ScrollController();
     _controller.addListener((){
@@ -24,13 +28,15 @@ class MainSection extends StatelessWidget {
     return GestureDetector(
       child: Center(
         child: GridView.count(
-          crossAxisCount: 2,
+          crossAxisCount: 1,
           children: List.generate(
-            7,
+            data.length,
             (index) {
-              return CustomCard(
-                imagePath: 'assets/images/meals/${index + 1}.jpg',
-                imageName: 'Daily Meal ${index + 1}',
+              return BookCard(
+                imagePath: data.elementAt(index).imagePath,
+                name: data.elementAt(index).name,
+                description: data.elementAt(index).description,
+                price: data.elementAt(index).price,
               );
             },
           ),

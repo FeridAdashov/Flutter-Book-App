@@ -122,9 +122,7 @@ class _CustomNavigationBarState extends State<CustomNavigationBar>
   }
 
   void _buttonTap(int index) {
-    if (widget.onTap != null) {
-      widget.onTap(index);
-    }
+    widget.onTap(index);
     final newPosition = index / _length;
     setState(() {
       _startingPos = _pos;

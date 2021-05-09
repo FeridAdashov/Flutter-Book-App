@@ -1,3 +1,4 @@
+import 'package:book_project/Constants/colors.dart';
 import 'package:flutter/material.dart';
 
 class ChoicesSection extends StatefulWidget {
@@ -13,11 +14,6 @@ class _ChoicesSectionState extends State<ChoicesSection> {
     List<String> _listChoices = List.generate(0, (index) => 'name: $index');
 
     _listChoices.add('Hamısı');
-    _listChoices.add('Ana Yeməklər');
-    _listChoices.add('İçkilər');
-    _listChoices.add('Pizza');
-    _listChoices.add('Desert');
-    _listChoices.add('Şiriniyyat');
 
     return Container(
       height: 60.0,
@@ -37,7 +33,7 @@ class _ChoicesSectionState extends State<ChoicesSection> {
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color:
-                        _selectedIndex == index ? Color(0xFF3D6602) : Color(
+                        _selectedIndex == index ? AppColors.white : Color(
                             0xEE6A9C2D),
                     fontWeight: FontWeight.bold,
                     fontSize: _selectedIndex == index ? 18 : 15

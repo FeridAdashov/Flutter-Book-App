@@ -1,25 +1,26 @@
+import 'package:book_project/Constants/colors.dart';
+import 'package:book_project/Constants/functions.dart';
 import 'package:book_project/Screens/Login/service/auth_service.dart';
+import 'package:book_project/Screens/Login/view/login/login_page.dart';
 import 'package:book_project/Services/DatabaseService.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'Sections/main_section.dart';
 import 'package:provider/provider.dart';
-import 'ExtraPages/search_bar_page.dart';
 
+import 'ExtraPages/search_bar_page.dart';
 import 'Sections/bottom_section.dart';
 import 'Sections/choices_section.dart';
+import 'Sections/main_section.dart';
 import 'Sections/top_section.dart';
 import 'model/book.dart';
 
-class TableHome extends StatefulWidget {
-  final Color firstColor = Color(0xFFAED5D3);
-  final Color secondColor = Color(0xFF65AE00);
+class BookHome extends StatefulWidget {
 
   @override
-  _TableHomeState createState() => _TableHomeState();
+  _BookHomeState createState() => _BookHomeState();
 }
 
-class _TableHomeState extends State<TableHome> {
+class _BookHomeState extends State<BookHome> {
   final AuthService _auth = AuthService();
   String _searchText = "";
 
@@ -69,18 +70,22 @@ class _TableHomeState extends State<TableHome> {
       });
     }
 
-    return StreamProvider<List<Book>>.value(
-      value: DatabaseService().booksList(),
-      initialData: [],
+    return MultiProvider(
+      providers: [
+        StreamProvider<List<Book>>.value(
+          value: DatabaseService().booksList(),
+          initialData: [],
+        )
+      ],
       child: GestureDetector(
         behavior: HitTestBehavior.opaque,
         onVerticalDragStart: (details) => _startVerticalDrag(details),
         onVerticalDragUpdate: (details) => _whileVerticalDrag(details),
         child: Scaffold(
-          backgroundColor: widget.firstColor,
+          backgroundColor: AppColors.homeBaseColor,
           bottomNavigationBar: buildBottomSection(
-            widget.firstColor,
-            widget.secondColor,
+            AppColors.homeBaseColor,
+            AppColors.primaryColor,
             _selectedBottomMenuIndex,
             tapNavBar,
           ),
@@ -106,6 +111,7 @@ class _TableHomeState extends State<TableHome> {
     switch (index) {
       case 0:
         _auth.signOut();
+        replacePage(context, LoginPage());
         break;
       case 1:
         showSearch(context: context, delegate: SearchBarPage(listNames));

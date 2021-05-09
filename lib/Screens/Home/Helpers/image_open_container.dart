@@ -21,7 +21,7 @@ class ImageOpenContainer extends StatelessWidget {
         height: height,
         width: width,
         child: FittedBox(
-          child: Image.asset('$imagePath'),
+          child: Image.network('$imagePath'),
           fit: BoxFit.fill,
         ),
       ),

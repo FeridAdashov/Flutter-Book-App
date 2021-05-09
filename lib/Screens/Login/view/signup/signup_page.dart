@@ -1,6 +1,6 @@
 import 'package:book_project/Constants/colors.dart';
 import 'package:book_project/Constants/functions.dart';
-import 'package:book_project/Screens/Home/home_page.dart';
+import 'package:book_project/Screens/Home/book_home.dart';
 import 'package:book_project/Screens/Login/service/auth_service.dart';
 import 'package:book_project/Screens/Login/view/widgets/back_shape.dart';
 import 'package:book_project/Screens/Login/view/widgets/signup_button.dart';
@@ -14,7 +14,7 @@ import 'package:flutter_svg/svg.dart';
 
 import '../widgets/textFormField.dart';
 
-class SignupView extends StatelessWidget {
+class SignupPage extends StatelessWidget {
   final GlobalKey<FormState> formKey = GlobalKey();
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
@@ -33,7 +33,7 @@ class SignupView extends StatelessWidget {
       child: BlocConsumer<SignupCubit, SignupState>(
         listener: (context, state) {
           if (state is SignupComplete) {
-            replacePage(context, HomePage(model: state.model));
+            replacePage(context, BookHome());
           } else if (state is SignupError) {
             showFloatingFlushbar(baseContext, 'Signup Error', state.message);
             print("ERROR: ${state.message}");

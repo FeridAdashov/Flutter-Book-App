@@ -1,4 +1,4 @@
-import 'package:book_project/Screens/Login/view/login/login_view.dart';
+import 'package:book_project/Screens/Login/view/login/login_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Material App',
       debugShowCheckedModeBanner: false,
-      home: LoginView(),
+      home: LoginPage(),
     );
   }
 }

@@ -1,10 +1,9 @@
 import 'package:book_project/Constants/colors.dart';
 import 'package:book_project/Constants/functions.dart';
 import 'package:book_project/Constants/strings.dart';
-import 'package:book_project/Screens/Home/home_page.dart';
-import 'package:book_project/Screens/Home/table_home.dart';
+import 'package:book_project/Screens/Home/book_home.dart';
 import 'package:book_project/Screens/Login/service/auth_service.dart';
-import 'package:book_project/Screens/Login/view/signup/signup_view.dart';
+import 'package:book_project/Screens/Login/view/signup/signup_page.dart';
 import 'package:book_project/Screens/Login/view/widgets/back_shape.dart';
 import 'package:book_project/Screens/Login/view/widgets/login_button.dart';
 import 'package:book_project/Screens/Login/viewmodel/login/login_cubit.dart';
@@ -17,7 +16,7 @@ import 'package:flutter_svg/svg.dart';
 
 import '../widgets/textFormField.dart';
 
-class LoginView extends StatelessWidget {
+class LoginPage extends StatelessWidget {
   final GlobalKey<FormState> formKey = GlobalKey();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
@@ -35,7 +34,7 @@ class LoginView extends StatelessWidget {
         listener: (context, state) {
           if (state is LoginComplete) {
             // replacePage(context, HomePage(model: state.model));
-            replacePage(context, TableHome());
+            replacePage(context, BookHome());
           } else if (state is LoginError) {
             showFloatingFlushbar(baseContext, 'Login Error', state.message);
             print("ERROR: ${state.message}");
@@ -119,7 +118,7 @@ class LoginView extends StatelessWidget {
                       buildLoginButton(context),
                       SizedBox(height: 20),
                       InkWell(
-                        onTap: () => navigateToPage(context, SignupView()),
+                        onTap: () => navigateToPage(context, SignupPage()),
                         child: Text(
                           'Hesab yarat',
                           style: TextStyle(

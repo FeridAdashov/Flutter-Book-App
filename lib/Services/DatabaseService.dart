@@ -87,7 +87,7 @@ class DatabaseService {
   }
 
   Stream<List<Book>> booksList() {
-    return usersSnapshot
+    return booksSnapshot
         .map((querySnapshot) => _bookListFromSnapshot(querySnapshot));
   }
 
@@ -104,9 +104,10 @@ class DatabaseService {
     var data = snapshot.data() as Map<String, dynamic>;
 
     return Book(
-        // name: data['name'] ?? '',
-        // email: snapshot.id,
-        // password: data['password'] ?? '',
-        );
+      name: data['name'] ?? '',
+      imagePath: data['imagePath'] ?? '',
+      description: data['description'] ?? '',
+      price: data['price'] ?? 0,
+    );
   }
 }

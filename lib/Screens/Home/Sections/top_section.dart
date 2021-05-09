@@ -1,5 +1,6 @@
 import 'package:animations/animations.dart';
-import 'package:carousel_slider/carousel_slider.dart';
+
+// import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
 import '../ExtraPages/image_detail_page.dart';
@@ -13,7 +14,8 @@ List<Widget> getImageSliders(List<String> imageList, List<String> textList) {
             openBuilder: (_, closeContainer) => ImageDetailPage(
               closeContainer,
               imagePath: item,
-              imageName: textList.elementAt(imageList.indexOf(item)),
+              name: textList.elementAt(imageList.indexOf(item)),
+              description: '',
             ),
             onClosed: (res) => null,
             tappable: false,
@@ -56,20 +58,21 @@ class TopSection extends StatelessWidget {
     ];
 
     return AnimatedContainer(
-        height: selected ? height : 0.0,
-        width: width,
-        alignment: selected ? Alignment.center : AlignmentDirectional.topCenter,
-        duration: Duration(seconds: 1),
-        curve: Curves.fastOutSlowIn,
-        child: CarouselSlider(
-          options: CarouselOptions(
-            autoPlay: true,
-            enlargeCenterPage: true,
-            enlargeStrategy: CenterPageEnlargeStrategy.scale,
-            height: height,
-          ),
-          items: getImageSliders(imageList, textList),
-        ));
+      height: selected ? height : 0.0,
+      width: width,
+      alignment: selected ? Alignment.center : AlignmentDirectional.topCenter,
+      duration: Duration(seconds: 1),
+      curve: Curves.fastOutSlowIn,
+      // child: CarouselSlider(
+      //   options: CarouselOptions(
+      //     autoPlay: true,
+      //     enlargeCenterPage: true,
+      //     enlargeStrategy: CenterPageEnlargeStrategy.scale,
+      //     height: height,
+      //   ),
+      //   items: getImageSliders(imageList, textList),
+      // ),
+    );
   }
 }
 

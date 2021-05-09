@@ -4,11 +4,12 @@ class ImageDetailPage extends StatelessWidget {
   const ImageDetailPage(
     this.onClose, {
     required this.imagePath,
-    required this.imageName,
+    required this.name,
+    required this.description,
   });
 
   final void Function({String returnValue}) onClose;
-  final String imagePath, imageName;
+  final String imagePath, name, description;
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +52,7 @@ class ImageDetailPage extends StatelessWidget {
                 fit: StackFit.expand,
                 children: [
                   FittedBox(
-                    child: Image.asset(imagePath),
+                    child: Image.network(imagePath),
                     fit: BoxFit.fill,
                   ),
                   Align(
@@ -81,16 +82,11 @@ class ImageDetailPage extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      Text(imageName,
+                      Text(name,
                           style: TextStyle(
                               color: Colors.black54,
                               fontWeight: FontWeight.bold,
                               fontSize: 20)),
-                      Spacer(),
-                      Icon(Icons.access_time_sharp, color: Color(0xFF65AE00)),
-                      SizedBox(width: 5),
-                      Text('20 min',
-                          style: TextStyle(color: Color(0xFF65AE00))),
                     ],
                   ),
                   SizedBox(height: 20),
@@ -101,7 +97,7 @@ class ImageDetailPage extends StatelessWidget {
                           fontSize: 20)),
                   SizedBox(height: 25),
                   Text(
-                      'Hayvansal gıda içermeyen (Mozeralla içermeyen) veganlara özel yaptığımız, Taze Domates,Taze Mantar, Soğan,Yeşil Biber,Siyah Zeytin ve Mısır\'dan oluşan Vegan Pizzamız.',
+                      description,
                       style: TextStyle(
                           color: Colors.black45,
                           fontWeight: FontWeight.bold,
