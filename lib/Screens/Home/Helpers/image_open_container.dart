@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class ImageOpenContainer extends StatelessWidget {
   const ImageOpenContainer({
@@ -21,7 +22,17 @@ class ImageOpenContainer extends StatelessWidget {
         height: height,
         width: width,
         child: FittedBox(
-          child: Image.network('$imagePath'),
+          child: FadeInImage.assetNetwork(
+            image: '$imagePath',
+            placeholder: 'assets/images/loading_gif.gif',
+            fit: BoxFit.cover,
+            width: 50.0,
+            height: 50.0,
+            imageErrorBuilder: (BuildContext context, Object exception,
+                StackTrace? stackTrace) {
+              return SvgPicture.asset('assets/images/book.svg');
+            },
+          ),
           fit: BoxFit.fill,
         ),
       ),

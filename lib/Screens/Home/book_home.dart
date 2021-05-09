@@ -25,17 +25,13 @@ class _BookHomeState extends State<BookHome> {
   String _searchText = "";
 
   int _selectedBottomMenuIndex = 0;
-
   bool _topSectionVisibility = true;
 
-  int _initialDragTimeStamp = 0;
-  int _currentDragTimeStamp = 0;
-  int _timeDelta = 0;
-  double _initialPositionY = 0;
-  double _currentPositionY = 0;
-  double _positionYDelta = 0;
-
   List<String> listNames = List.generate(5, (index) => 'name: $index');
+
+
+  int _initialDragTimeStamp = 0;
+  double _initialPositionY = 0;
 
   void _startVerticalDrag(details) {
     _initialDragTimeStamp = details.sourceTimeStamp.inMilliseconds;
@@ -43,11 +39,11 @@ class _BookHomeState extends State<BookHome> {
   }
 
   void _whileVerticalDrag(details) {
-    _currentDragTimeStamp = details.sourceTimeStamp.inMilliseconds;
-    _currentPositionY = details.globalPosition.dy;
+    int _currentDragTimeStamp = details.sourceTimeStamp.inMilliseconds;
+    double _currentPositionY = details.globalPosition.dy;
 
-    _timeDelta = _currentDragTimeStamp - _initialDragTimeStamp;
-    _positionYDelta = _currentPositionY - _initialPositionY;
+    int _timeDelta = _currentDragTimeStamp - _initialDragTimeStamp;
+    double _positionYDelta = _currentPositionY - _initialPositionY;
 
     if (_timeDelta < 200 && _positionYDelta < -100) {
       setState(() {
@@ -73,7 +69,11 @@ class _BookHomeState extends State<BookHome> {
     return MultiProvider(
       providers: [
         StreamProvider<List<Book>>.value(
-          value: DatabaseService().booksList(),
+          value: DatabaseService().allBooksList(),
+          initialData: [],
+        ),
+        StreamProvider<List<Book>>.value(
+          value: DatabaseService().allBooksList(),
           initialData: [],
         )
       ],

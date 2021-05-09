@@ -86,7 +86,7 @@ class DatabaseService {
     return refBOOKS.snapshots();
   }
 
-  Stream<List<Book>> booksList() {
+  Stream<List<Book>> allBooksList() {
     return booksSnapshot
         .map((querySnapshot) => _bookListFromSnapshot(querySnapshot));
   }
@@ -108,6 +108,7 @@ class DatabaseService {
       imagePath: data['imagePath'] ?? '',
       description: data['description'] ?? '',
       price: data['price'] ?? 0,
+      isFavourite: data['isFavourite'] ?? false,
     );
   }
 }

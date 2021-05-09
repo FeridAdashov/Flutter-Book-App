@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class ImageDetailPage extends StatelessWidget {
   const ImageDetailPage(
@@ -17,11 +18,7 @@ class ImageDetailPage extends StatelessWidget {
     final double width = MediaQuery.of(context).size.width;
 
     int _initialDragTimeStamp = 0;
-    int _currentDragTimeStamp = 0;
-    int _timeDelta = 0;
     double _initialPositionY = 0.0;
-    double _currentPositionY = 0.0;
-    double _positionYDelta = 0.0;
 
     void _startVerticalDrag(details) {
       _initialDragTimeStamp = details.sourceTimeStamp.inMilliseconds;
@@ -29,11 +26,11 @@ class ImageDetailPage extends StatelessWidget {
     }
 
     void _whileVerticalDrag(details) {
-      _currentDragTimeStamp = details.sourceTimeStamp.inMilliseconds;
-      _currentPositionY = details.globalPosition.dy;
+      int _currentDragTimeStamp = details.sourceTimeStamp.inMilliseconds;
+      double _currentPositionY = details.globalPosition.dy;
 
-      _timeDelta = _currentDragTimeStamp - _initialDragTimeStamp;
-      _positionYDelta = _currentPositionY - _initialPositionY;
+      int _timeDelta = _currentDragTimeStamp - _initialDragTimeStamp;
+      double _positionYDelta = _currentPositionY - _initialPositionY;
 
       if (_timeDelta < 200 && _positionYDelta > 120) Navigator.pop(context);
     }
@@ -52,7 +49,17 @@ class ImageDetailPage extends StatelessWidget {
                 fit: StackFit.expand,
                 children: [
                   FittedBox(
-                    child: Image.network(imagePath),
+                    child: FadeInImage.assetNetwork(
+                      image: '$imagePath',
+                      placeholder: 'assets/images/loading_gif.gif',
+                      fit: BoxFit.cover,
+                      width: 50.0,
+                      height: 50.0,
+                      imageErrorBuilder: (BuildContext context,
+                          Object exception, StackTrace? stackTrace) {
+                        return SvgPicture.asset('assets/images/book.svg');
+                      },
+                    ),
                     fit: BoxFit.fill,
                   ),
                   Align(
@@ -96,8 +103,7 @@ class ImageDetailPage extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                           fontSize: 20)),
                   SizedBox(height: 25),
-                  Text(
-                      description,
+                  Text(description,
                       style: TextStyle(
                           color: Colors.black45,
                           fontWeight: FontWeight.bold,

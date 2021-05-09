@@ -1,28 +1,30 @@
 import 'package:animations/animations.dart';
-
-// import 'package:carousel_slider/carousel_slider.dart';
+import 'package:book_project/Screens/Home/model/book.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 
 import '../ExtraPages/image_detail_page.dart';
 
-List<Widget> getImageSliders(List<String> imageList, List<String> textList) {
-  return imageList
+List<Widget> getImageSliders(List<Book> bookList) {
+  return bookList
       .map(
         (item) => Container(
           margin: EdgeInsets.only(top: 5),
           child: OpenContainer<String>(
             openBuilder: (_, closeContainer) => ImageDetailPage(
               closeContainer,
-              imagePath: item,
-              name: textList.elementAt(imageList.indexOf(item)),
+              imagePath: item.imagePath,
+              name: item.name,
               description: '',
             ),
             onClosed: (res) => null,
             tappable: false,
             closedBuilder: (_, openContainer) => OpenImageDetail(
               openContainer: openContainer,
-              imagePath: item,
-              imageName: textList.elementAt(imageList.indexOf(item)),
+              imagePath: item.imagePath,
+              imageName: item.name,
             ),
             closedShape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(10.0)),
@@ -43,35 +45,25 @@ class TopSection extends StatelessWidget {
     final double height = MediaQuery.of(context).size.height * 0.25;
     final double width = MediaQuery.of(context).size.width;
 
-    final List<String> imageList = [
-      'assets/images/meals/1.jpg',
-      'assets/images/meals/2.jpg',
-      'assets/images/meals/3.jpg',
-      'assets/images/meals/4.jpg',
-    ];
-
-    final List<String> textList = [
-      'Birinci',
-      'Ikinci',
-      'Ucuncu',
-      'Dorduncu',
-    ];
+    var bookList = Provider.of<List<Book>>(context)
+        .where((element) => element.isFavourite ?? false)
+        .toList();
 
     return AnimatedContainer(
-      height: selected ? height : 0.0,
+      height: selected && bookList.length > 0 ? height : 0.0,
       width: width,
       alignment: selected ? Alignment.center : AlignmentDirectional.topCenter,
       duration: Duration(seconds: 1),
       curve: Curves.fastOutSlowIn,
-      // child: CarouselSlider(
-      //   options: CarouselOptions(
-      //     autoPlay: true,
-      //     enlargeCenterPage: true,
-      //     enlargeStrategy: CenterPageEnlargeStrategy.scale,
-      //     height: height,
-      //   ),
-      //   items: getImageSliders(imageList, textList),
-      // ),
+      child: CarouselSlider(
+        options: CarouselOptions(
+          autoPlay: true,
+          enlargeCenterPage: true,
+          enlargeStrategy: CenterPageEnlargeStrategy.scale,
+          height: height,
+        ),
+        items: getImageSliders(bookList),
+      ),
     );
   }
 }
@@ -94,11 +86,16 @@ class OpenImageDetail extends StatelessWidget {
         child: ClipRRect(
             child: Stack(
           children: <Widget>[
-            Image.asset(
-              imagePath,
-              fit: BoxFit.cover,
+            FadeInImage.assetNetwork(
+              image: '$imagePath',
+              placeholder: 'assets/images/loading_gif.gif',
+              fit: BoxFit.fill,
               width: double.infinity,
               height: double.infinity,
+              imageErrorBuilder: (BuildContext context, Object exception,
+                  StackTrace? stackTrace) {
+                return SvgPicture.asset('assets/images/book.svg');
+              },
             ),
             Positioned(
               bottom: 0.0,
