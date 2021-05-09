@@ -1,0 +1,97 @@
+{
+  "project_info": {
+    "project_number": "480897468254",
+    "project_id": "flutter-test-1-f82df",
+    "storage_bucket": "flutter-test-1-f82df.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:480897468254:android:080e9f2a11a1f8103d71cf",
+        "android_client_info": {
+          "package_name": "com.example.book_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "480897468254-jahj0g6s36mrsuhporsdn028m4jvvc0p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBLgF4tqUt3X8VZEIe2M_cdDWTMvpVdxxM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "480897468254-jahj0g6s36mrsuhporsdn028m4jvvc0p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:480897468254:android:ef3cd80771fdb4a93d71cf",
+        "android_client_info": {
+          "package_name": "com.example.flutter_app_4"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "480897468254-jahj0g6s36mrsuhporsdn028m4jvvc0p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBLgF4tqUt3X8VZEIe2M_cdDWTMvpVdxxM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "480897468254-jahj0g6s36mrsuhporsdn028m4jvvc0p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:480897468254:android:46629f98b977f2563d71cf",
+        "android_client_info": {
+          "package_name": "com.example.flutter_restaurant_order"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "480897468254-jahj0g6s36mrsuhporsdn028m4jvvc0p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBLgF4tqUt3X8VZEIe2M_cdDWTMvpVdxxM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "480897468254-jahj0g6s36mrsuhporsdn028m4jvvc0p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
